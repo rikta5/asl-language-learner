@@ -1,0 +1,36 @@
+<div class="flex flex-col items-center">
+  <div
+    class="relative w-full max-w-[640px] border-2 border-black rounded-lg overflow-hidden"
+    [class.opacity-60]="!hasWebcamPermission"
+  >
+    <canvas
+      #webcamCanvas
+      width="640"
+      height="480"
+      class="w-full h-auto"
+      aria-label="Webcam feed for ASL letter practice"
+    ></canvas>
+
+    <button class="turn-off-btn">Turn off Webcam</button>
+
+    <div
+      *ngIf="!hasWebcamPermission"
+      class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 text-white p-4 text-center"
+    >
+      <div>
+        <p class="text-xl font-medium mb-4">Webcam access required</p>
+        <button
+          (click)="enableWebcam()"
+          class="btn btn-primary"
+          aria-label="Enable webcam"
+        >
+          Enable Webcam
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="errorMessage" class="mt-2 text-error-500" role="alert">
+    {{ errorMessage }}
+  </p>
+</div>
