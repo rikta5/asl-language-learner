@@ -211,6 +211,18 @@ export class WebcamViewComponent implements OnInit, OnDestroy {
         const thumbTip = landmarks[4];
         const indexBase = landmarks[5];
         const indexTip = landmarks[8];
+        const middleTip = landmarks[12];
+        const ringTip = landmarks[16];
+        const pinkyTip = landmarks[20];
+
+        const thumbMCP = landmarks[2];
+        const indexMCP = landmarks[5];
+        const middleMCP = landmarks[9];
+        const ringMCP = landmarks[13];
+        const pinkyMCP = landmarks[17];
+
+        const thumbIP = landmarks[3];
+        const palmBase = landmarks[0];
 
         if (thumbTip && indexBase && indexTip) {
           if (
@@ -231,6 +243,238 @@ export class WebcamViewComponent implements OnInit, OnDestroy {
             indexTip.x < indexBase.x
           ) {
             feedback = "correct";
+          } else if (this.currentLetter === "D") {
+            if (
+              indexTip.y < middleTip.y &&
+              middleTip.y < ringTip.y &&
+              ringTip.y < pinkyTip.y &&
+              thumbTip.x < indexTip.x
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "E") {
+            if (
+              indexTip.y > indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y &&
+              thumbTip.x < indexTip.x
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "F") {
+            const dist = Math.hypot(
+              indexTip.x - thumbTip.x,
+              indexTip.y - thumbTip.y
+            );
+            if (
+              dist < 0.07 &&
+              middleTip.y < middleMCP.y &&
+              ringTip.y < ringMCP.y &&
+              pinkyTip.y < pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "G") {
+            if (
+              thumbTip.y < thumbIP.y &&
+              indexTip.x > indexMCP.x &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "H") {
+            if (
+              indexTip.y < indexMCP.y &&
+              middleTip.y < middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y &&
+              indexTip.x < middleTip.x
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "I") {
+            if (
+              pinkyTip.y < pinkyMCP.y &&
+              indexTip.y > indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              thumbTip.x < indexTip.x
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "J") {
+            if (
+              pinkyTip.y < pinkyMCP.y &&
+              indexTip.y > indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              thumbTip.x > pinkyTip.x
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "K") {
+            if (
+              middleTip.y < middleMCP.y &&
+              indexTip.y < indexMCP.y &&
+              thumbTip.x < indexTip.x
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "L") {
+            if (
+              indexTip.y < indexMCP.y &&
+              thumbTip.x < thumbIP.x &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "M") {
+            if (
+              thumbTip.x < indexTip.x &&
+              indexTip.y > indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y < pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "N") {
+            if (
+              thumbTip.x < indexTip.x &&
+              indexTip.y > indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y < ringMCP.y &&
+              pinkyTip.y < pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "O") {
+            const dist = Math.hypot(
+              thumbTip.x - indexTip.x,
+              thumbTip.y - indexTip.y
+            );
+            if (
+              dist < 0.1 &&
+              middleTip.y < middleMCP.y &&
+              ringTip.y < ringMCP.y &&
+              pinkyTip.y < pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "P") {
+            if (
+              indexTip.y < indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              thumbTip.y < indexTip.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "Q") {
+            if (
+              thumbTip.y > thumbIP.y &&
+              indexTip.x < indexMCP.x &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "R") {
+            if (
+              indexTip.y < indexMCP.y &&
+              middleTip.y < middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y &&
+              indexTip.x < middleTip.x
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "S") {
+            if (
+              indexTip.y > indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y &&
+              thumbTip.x < palmBase.x
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "T") {
+            const dist = Math.hypot(
+              thumbTip.x - indexTip.x,
+              thumbTip.y - indexTip.y
+            );
+            if (
+              dist < 0.07 &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "U") {
+            if (
+              indexTip.y < indexMCP.y &&
+              middleTip.y < middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "V") {
+            if (
+              indexTip.y < indexMCP.y &&
+              middleTip.y < middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y &&
+              Math.abs(indexTip.x - middleTip.x) > 0.03
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "W") {
+            if (
+              indexTip.y < indexMCP.y &&
+              middleTip.y < middleMCP.y &&
+              ringTip.y < ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "X") {
+            if (
+              indexTip.x < indexMCP.x &&
+              indexTip.y > indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "Y") {
+            if (
+              thumbTip.x < thumbMCP.x &&
+              pinkyTip.y < pinkyMCP.y &&
+              indexTip.y > indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y
+            ) {
+              feedback = "correct";
+            }
+          } else if (this.currentLetter === "Z") {
+            if (
+              indexTip.y < indexMCP.y &&
+              middleTip.y > middleMCP.y &&
+              ringTip.y > ringMCP.y &&
+              pinkyTip.y > pinkyMCP.y &&
+              thumbTip.x > indexTip.x
+            ) {
+              feedback = "correct";
+            }
           } else {
             feedback = "incorrect";
           }
