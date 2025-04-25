@@ -11,8 +11,6 @@
       aria-label="Webcam feed for ASL letter practice"
     ></canvas>
 
-    <button class="turn-off-btn">Turn off Webcam</button>
-
     <div
       *ngIf="!hasWebcamPermission"
       class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 text-white p-4 text-center"
@@ -29,6 +27,15 @@
       </div>
     </div>
   </div>
+
+  <button
+    type="button"
+    class="turn-off-btn"
+    (click)="stopWebcam()"
+    [style.visibility]="hasWebcamPermission ? 'visible' : 'hidden'"
+  >
+    Turn off Webcam
+  </button>
 
   <p *ngIf="errorMessage" class="mt-2 text-error-500" role="alert">
     {{ errorMessage }}

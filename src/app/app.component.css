@@ -1,0 +1,11 @@
+.main-container {
+  width: 1000px;
+}
+
+* {
+  font-family: "Montserrat";
+}
+
+.background {
+  background-color: aliceblue;
+}

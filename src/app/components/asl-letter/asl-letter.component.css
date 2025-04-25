@@ -1,0 +1,17 @@
+.hand-img {
+  width: 400px;
+  height: 400px;
+}
+
+.img-container {
+  width: 350px;
+  height: 350px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.asl-letter-container {
+  #background-color: #fff;
+  border-radius: 20px;
+}

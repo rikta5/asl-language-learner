@@ -1,0 +1,13 @@
+.feedback-container {
+  width: 100%;
+  padding: 25px 32px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  line-height: 1.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#next {
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+}
