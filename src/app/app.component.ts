@@ -1,0 +1,49 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './components/header/header.component';
+import { WebcamViewComponent } from './components/webcam-view/webcam-view.component';
+import { ASLLetterComponent } from './components/asl-letter/asl-letter.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
+import { LetterService } from './services/letter.service';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    CommonModule,
+    HeaderComponent,
+    WebcamViewComponent,
+    ASLLetterComponent,
+    FeedbackComponent
+  ],
+  template: `
+    <div class="min-h-screen bg-white flex flex-col">
+      <div class="container-app py-8 flex-1 flex flex-col">
+        <ng-container *ngIf="letterService.currentLetter$ | async as currentLetter">
+          <app-header [currentLetter]="currentLetter"></app-header>
+          <main class="flex-1 my-8">
+            <div class="flex flex-col md:flex-row gap-8 items-center justify-center">
+              <app-webcam-view></app-webcam-view>
+              <app-asl-letter 
+                [letter]="currentLetter"
+                class="animate-fade-in"
+              ></app-asl-letter>
+            </div>
+          </main>
+          <app-feedback 
+            [status]="feedback"
+            (nextLetter)="letterService.nextLetter()"
+          ></app-feedback>
+        </ng-container>
+      </div>
+    </div>
+  `,
+})
+export class AppComponent {
+  feedback: 'waiting' | 'correct' | 'incorrect' = 'waiting';
+  constructor(public letterService: LetterService) {}
+
+  updateFeedback(status: 'waiting' | 'correct' | 'incorrect') {
+    this.feedback = status;
+  }
+}
