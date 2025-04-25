@@ -14,7 +14,7 @@ import { LetterService } from './services/letter.service';
     HeaderComponent,
     WebcamViewComponent,
     ASLLetterComponent,
-    FeedbackComponent
+    FeedbackComponent,
   ],
   template: `
     <div class="min-h-screen bg-white flex flex-col">
@@ -23,7 +23,10 @@ import { LetterService } from './services/letter.service';
           <app-header [currentLetter]="currentLetter"></app-header>
           <main class="flex-1 my-8">
             <div class="flex flex-col md:flex-row gap-8 items-center justify-center">
-              <app-webcam-view></app-webcam-view>
+              <app-webcam-view 
+                [currentLetter]="currentLetter"
+                (gestureResult)="updateFeedback($event)"
+              ></app-webcam-view>
               <app-asl-letter 
                 [letter]="currentLetter"
                 class="animate-fade-in"
@@ -32,7 +35,7 @@ import { LetterService } from './services/letter.service';
           </main>
           <app-feedback 
             [status]="feedback"
-            (nextLetter)="letterService.nextLetter()"
+            (nextLetter)="nextLetter()"
           ></app-feedback>
         </ng-container>
       </div>
@@ -41,9 +44,18 @@ import { LetterService } from './services/letter.service';
 })
 export class AppComponent {
   feedback: 'waiting' | 'correct' | 'incorrect' = 'waiting';
+  private letters = ['A', 'B', 'C'];
+  private currentIndex = 0;
+
   constructor(public letterService: LetterService) {}
 
   updateFeedback(status: 'waiting' | 'correct' | 'incorrect') {
     this.feedback = status;
+  }
+
+  nextLetter() {
+    this.currentIndex = (this.currentIndex + 1) % this.letters.length;
+    this.letterService.setLetter(this.letters[this.currentIndex]);
+    this.feedback = 'waiting';
   }
 }
